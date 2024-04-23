@@ -63,6 +63,7 @@ This document provides detailed configuration options for the Home Assistant Hel
 | `hostPort.enabled` | Enable 'hostPort' or not | `false` |
 | `hostPort.port` | Port number | `8123` |
 | `dnsConfig` | Override the default dnsConfig and set your own nameservers or ndots, among other options | `{}` |
+| `initContainers` | Specify one or more init containers that will run before the application containers start | `[]` |
 | `service.type` | Service type (ClusterIP, NodePort, LoadBalancer, or ExternalName) | `ClusterIP` |
 | `service.port` | Service port | `8080` |
 | `service.annotations` | Annotations to add to the service | `{}` |

@@ -97,6 +97,51 @@ dnsConfig: {}
   #   - name: ndots
   #     value: "2"
 
+# An init conainer runs before the main container(s). This might be useful for installing blueprints
+# into the /config volume or other shenanigans.
+initContainers: []
+# - name: home-assistant-init
+  # Image settings for the init container
+  # image:
+    # repository:
+    # pullPolicy: IfNotPresent
+    # tag:
+
+  # Container security context settings for the init container
+  # securityContext:  {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  # Environment variables for the init container
+  # env: []
+  # - name: TZ
+  #   value: Europe/Prague
+  # - name: SOME_VAR_FROM_CONFIG_MAP
+  #   valueFrom:
+  #     configMapRef:
+  #       name: configmap-name
+  #       key: config-key
+  # - name: SOME_SECRET
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: secret-name
+  #       key: secret-key
+
+  # Use environment variables from ConfigMaps or Secrets
+  # envFrom: []
+    # - configMapRef:
+    #     name: config-map-name
+    # - secretRef:
+    #     name: secret-name
+
+  # additionalMounts: []
+      # - mountPath: /dev/ttyACM0
+      #   name: usb
+
 # Service settings
 service:
   # Service type (ClusterIP, NodePort, LoadBalancer, or ExternalName)

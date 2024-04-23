@@ -102,6 +102,30 @@ spec:
           - mountPath: /config
             name: {{ include "home-assistant.fullname" . }}
         {{- end }}
+      {{- if .Values.initContainers }}
+      initContainers:
+        {{- range .Values.initContainers }}
+        - name: {{ .name }}
+          securityContext:
+            {{- toYaml .securityContext | nindent 12 }}
+          image: "{{ .image.repository }}:{{ .image.tag }}"
+          imagePullPolicy: {{ .pullPolicy }}
+          {{- with .envFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .env }}
+          env:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+          - mountPath: /config
+            name: {{ include "home-assistant.fullname" $ }}
+          {{- if .additionalMounts }}
+            {{- .additionalMounts | toYaml | nindent 10 }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
